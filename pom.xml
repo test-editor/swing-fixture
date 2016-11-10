@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.testeditor.fixture</groupId>
+        <artifactId>parent</artifactId>
+        <version>2.5.0</version>
+        <relativePath>../core/org.testeditor.fixture.parent</relativePath>
+    </parent>
+
+    <groupId>org.testeditor.fixture</groupId>
+    <artifactId>swing-fixture</artifactId>
+    <version>2.5.3-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>Fixture used for testing SWING applications.</description>
+    <url>http://testeditor.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <checkstyle-config>${basedir}/../core/org.testeditor.fixture.parent/checkstyle.xml</checkstyle-config>
+        <bintray.package>swing-fixture</bintray.package>
+        <maven.dependency.plugin.version>2.10</maven.dependency.plugin.version>
+        <core.fixture.version>${project.parent.version}</core.fixture.version>
+        <fest.swing.version>1.2.1</fest.swing.version>
+        <fest.assert.version>1.4</fest.assert.version>
+        <fest.reflect.version>1.2</fest.reflect.version>
+        <GeburtstagsListenVerwaltung.version>1.0</GeburtstagsListenVerwaltung.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>project-repo</id>
+            <url>file://${project.basedir}/src/test/resources</url>
+        </repository>
+    </repositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${maven.dependency.plugin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.testeditor.fixture</groupId>
+                <artifactId>core-fixture</artifactId>
+                <version>${core.fixture.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.easytesting</groupId>
+                <artifactId>fest-swing</artifactId>
+                <version>${fest.swing.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.easytesting</groupId>
+                <artifactId>fest-assert</artifactId>
+                <version>${fest.assert.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.easytesting</groupId>
+                <artifactId>fest-reflect</artifactId>
+                <version>${fest.reflect.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.akquinet.birthday</groupId>
+                <artifactId>GeburtstagsListenVerwaltung</artifactId>
+                <version>${GeburtstagsListenVerwaltung.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-scm-plugin</artifactId>
+                    <version>${maven.scmplugin.version}</version>
+                    <configuration>
+                        <tag>swing-${project.version}</tag>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+            </plugin>
+
+            <!-- copy all jars to libs folder -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/libs</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                            <excludeArtifactIds>fitnesse</excludeArtifactIds>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.testeditor.fixture</groupId>
+            <artifactId>core-fixture</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.easytesting</groupId>
+            <artifactId>fest-swing</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.easytesting</groupId>
+            <artifactId>fest-assert</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.easytesting</groupId>
+            <artifactId>fest-reflect</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.akquinet.birthday</groupId>
+            <artifactId>GeburtstagsListenVerwaltung</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>
