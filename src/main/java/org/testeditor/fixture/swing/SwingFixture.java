@@ -14,6 +14,11 @@
  */
 package org.testeditor.fixture.swing;
 
+import java.awt.Component;
+
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+
 import org.apache.log4j.Logger;
 import org.fest.swing.core.BasicRobot;
 import org.fest.swing.core.ComponentFinder;
@@ -22,20 +27,21 @@ import org.fest.swing.core.Robot;
 import org.fest.swing.driver.BasicJTableCellReader;
 import org.fest.swing.exception.ComponentLookupException;
 import org.fest.swing.finder.WindowFinder;
-import org.fest.swing.fixture.*;
+import org.fest.swing.fixture.FrameFixture;
+import org.fest.swing.fixture.JButtonFixture;
+import org.fest.swing.fixture.JCheckBoxFixture;
+import org.fest.swing.fixture.JComboBoxFixture;
+import org.fest.swing.fixture.JRadioButtonFixture;
+import org.fest.swing.fixture.JTableFixture;
+import org.fest.swing.fixture.JTextComponentFixture;
 import org.fest.swing.launcher.ApplicationLauncher;
-import org.testeditor.fixture.core.interaction.Fixture;
 import org.testeditor.fixture.core.interaction.FixtureMethod;
-
-import javax.swing.*;
-import java.awt.*;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 /**
  * Fixture for communication via socket with swing agent.
  */
-public class SwingFixture implements Fixture {
+public class SwingFixture {
+	
     private static final Logger LOGGER = Logger.getLogger(SwingFixture.class);
     private static Thread thread;
     private Robot robot;
@@ -576,23 +582,4 @@ public class SwingFixture implements Fixture {
         return !(text.equals(getSelectedComboBoxItemText(locator)));
     }
 
-    @Override
-    public String getTestName() {
-        return null;
-    }
-
-    @Override
-    public void postInvoke(Method arg0, Object arg1, Object... arg2) throws InvocationTargetException,
-        IllegalAccessException {
-    }
-
-    @Override
-    public void preInvoke(Method arg0, Object arg1, Object... arg2) throws InvocationTargetException,
-        IllegalAccessException {
-    }
-
-    @Override
-    public void setTestName(String arg0) {
-
-    }
 }

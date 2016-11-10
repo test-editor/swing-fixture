@@ -16,7 +16,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile 'org.testeditor.fixture:core-fixture:2.5.0'
+    compile 'org.testeditor.fixture:core-fixture:3.0.2'
     compile 'org.easytesting:fest-swing:1.2.1'
     compile 'org.easytesting:fest-assert:1.4'
     compile 'org.easytesting:fest-reflect:1.2'
