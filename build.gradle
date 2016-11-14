@@ -21,7 +21,6 @@ dependencies {
     compile 'org.easytesting:fest-assert:1.4'
     compile 'org.easytesting:fest-reflect:1.2'
     compile 'log4j:log4j:1.2.17'
-    compile 'org.fitnesse:fitnesse:20121220'
     testCompile 'de.akquinet.birthday:GeburtstagsListenVerwaltung:1.0'
     testCompile 'junit:junit:4.12'
 }
