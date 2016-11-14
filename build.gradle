@@ -1,0 +1,79 @@
+plugins {
+    id 'maven'
+    id 'java'
+    id 'com.jfrog.bintray' version '1.7.2'
+    id 'net.researchgate.release' version '2.4.1'
+}
+
+repositories {
+    jcenter()
+    maven { url "$projectDir/src/test/resources" }
+}
+
+group = 'org.testeditor.fixture'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile 'org.testeditor.fixture:core-fixture:3.1.0'
+    compile 'org.easytesting:fest-swing:1.2.1'
+    compile 'org.easytesting:fest-assert:1.4'
+    compile 'org.easytesting:fest-reflect:1.2'
+    compile 'log4j:log4j:1.2.17'
+    testCompile 'de.akquinet.birthday:GeburtstagsListenVerwaltung:1.0'
+    testCompile 'junit:junit:4.12'
+}
+
+// TODO code below copied from core-fixture
+jar {
+    manifest {
+        attributes 'Implementation-Title': "${project.group}.${project.name}",
+                   'Implementation-Version': project.version
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+	classifier 'sources'
+	from sourceSets.main.allSource
+}
+
+artifacts {
+	archives sourcesJar
+}
+
+install {
+    repositories.mavenInstaller {
+    	pom.packaging = 'jar'
+    }
+}
+
+release {
+    preTagCommitMessage = '[release]'
+    tagCommitMessage = '[release]'
+    newVersionCommitMessage = '[release] new version'
+    tagTemplate = 'v${version}'
+}
+
+afterReleaseBuild.dependsOn bintrayUpload
+
+bintray {
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_KEY')
+    configurations = ['archives']
+    publish = true 
+    pkg {
+        repo = 'Fixtures'
+        name = project.name
+        userOrg = 'test-editor'
+        websiteUrl = 'http://testeditor.org'
+        vcsUrl = "https://github.com/test-editor/${project.name}.git"
+        licenses = ['EPL-1.0']
+    }
+}
+
+bintrayUpload.doFirst {
+    // Version is changed during release, we need to set the proper version right before uploading
+    versionName = "$project.version"
+    versionVcsTag = "v$project.version"
+}
