@@ -19,7 +19,6 @@ import java.awt.Component;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
-import org.apache.log4j.Logger;
 import org.fest.swing.core.BasicRobot;
 import org.fest.swing.core.ComponentFinder;
 import org.fest.swing.core.GenericTypeMatcher;
@@ -35,6 +34,8 @@ import org.fest.swing.fixture.JRadioButtonFixture;
 import org.fest.swing.fixture.JTableFixture;
 import org.fest.swing.fixture.JTextComponentFixture;
 import org.fest.swing.launcher.ApplicationLauncher;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testeditor.fixture.core.interaction.FixtureMethod;
 
 /**
@@ -42,7 +43,7 @@ import org.testeditor.fixture.core.interaction.FixtureMethod;
  */
 public class SwingFixture {
 	
-    private static final Logger LOGGER = Logger.getLogger(SwingFixture.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SwingFixture.class);
     private static Thread thread;
     private Robot robot;
     private FrameFixture window;

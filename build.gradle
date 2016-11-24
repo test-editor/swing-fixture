@@ -15,12 +15,14 @@ group = 'org.testeditor.fixture'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+// show standard out during test to see logging output
+test.testLogging.showStandardStreams = true
+
 dependencies {
     compile 'org.testeditor.fixture:core-fixture:3.1.0'
     compile 'org.easytesting:fest-swing:1.2.1'
     compile 'org.easytesting:fest-assert:1.4'
     compile 'org.easytesting:fest-reflect:1.2'
-    compile 'log4j:log4j:1.2.17'
     testCompile 'de.akquinet.birthday:GeburtstagsListenVerwaltung:1.0'
     testCompile 'junit:junit:4.12'
 }
