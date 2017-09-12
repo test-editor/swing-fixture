@@ -2,7 +2,7 @@ swing-fixture
 =============
 
 [![License](http://img.shields.io/badge/license-EPL-blue.svg?style=flat)](https://www.eclipse.org/legal/epl-v10.html)
-[![Build Status](https://travis-ci.org/test-editor/swing-fixture.svg?branch=develop)](https://travis-ci.org/test-editor/swing-fixture)
+[![Build Status](https://travis-ci.org/test-editor/swing-fixture.svg?branch=master)](https://travis-ci.org/test-editor/swing-fixture)
 [![Download](https://api.bintray.com/packages/test-editor/Fixtures/swing-fixture/images/download.svg)](https://bintray.com/test-editor/Fixtures/swing-fixture/_latestVersion)
 
 Fixture used for testing Swing applications.
